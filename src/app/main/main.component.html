@@ -1,0 +1,33 @@
+<div class="filters-container">
+    <mat-form-field>
+        <mat-label>Search for an item</mat-label>
+        <input matInput  #input>
+    </mat-form-field>
+
+    <span class="spacer"></span>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>All categories</mat-label>
+        <mat-select >
+            <mat-option></mat-option>            
+        </mat-select>
+    </mat-form-field>
+</div>
+
+
+<div class="sports-container">
+    <ng-container *ngFor="let sport of store.sports">
+        <mat-card routerLink = "/sport-details" [state]="sport">
+            <img mat-card-image [src]="sport.strSportThumb">
+            <mat-card-content>
+                <p>
+                    {{ sport.strSport }}
+                </p>
+                <p>
+                idSport: {{ sport.idSport }} <br>
+                strFormat: {{ sport.strFormat }}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+</div>
