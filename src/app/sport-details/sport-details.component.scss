@@ -1,0 +1,8 @@
+@mixin sport-details-theme($theme) {
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+
+    .details-container {
+        min-height: 100vh;
+    }
+}

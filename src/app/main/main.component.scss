@@ -1,24 +1,30 @@
-.filters-container {
-    display: flex;
-    box-sizing: border-box;
-    padding: 0 16px;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-}
-.spacer {
-    flex: 1 1 auto;
-}
-.sports-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-    .mat-card {
-        cursor: pointer;
-        margin: 10px;
+@mixin main-theme($theme) {
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+
+
+    .filters-container {
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 16px;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+    .spacer {
+        flex: 1 1 auto;
+    }
+    .sports-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        .mat-card {
+            cursor: pointer;
+            margin: 10px;
+        }
+
     }
 
+
 }
-
-
