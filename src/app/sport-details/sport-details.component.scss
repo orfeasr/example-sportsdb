@@ -3,6 +3,7 @@
     $warn: map-get($theme, warn);
 
     .details-container {
+        padding: 10px 15px;
         min-height: 100vh;
     }
 }
