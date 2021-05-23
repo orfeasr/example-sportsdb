@@ -9,7 +9,10 @@
     <mat-form-field appearance="fill">
         <mat-label>All categories</mat-label>
         <mat-select >
-            <mat-option></mat-option>            
+            <mat-option></mat-option>
+            <mat-option [(value)]="sport.strSport" *ngFor="let sport of store.sports">
+                {{ sport.strSport }}
+            </mat-option>            
         </mat-select>
     </mat-form-field>
 </div>
