@@ -1,7 +1,7 @@
 <div class="filters-container">
     <mat-form-field>
         <mat-label>Search for an item</mat-label>
-        <input matInput  #input>
+        <input matInput [(ngModel)]="term" #input>
     </mat-form-field>
 
     <span class="spacer"></span>
@@ -16,7 +16,7 @@
 
 
 <div class="sports-container">
-    <ng-container *ngFor="let sport of store.sports">
+    <ng-container *ngFor="let sport of store.sports | search:term">
         <mat-card routerLink = "/sport-details" [state]="sport">
             <img mat-card-image [src]="sport.strSportThumb">
             <mat-card-content>
