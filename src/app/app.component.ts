@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener,  OnDestroy, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Subscription } from 'rxjs';
 import { ThemingService } from './services/theming.service';
@@ -19,8 +19,20 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   @HostBinding('class') public cssClass: string;
+  @HostListener('window:beforeunload')
+  beforeUnloadHander() {
+    const selectedTheme = this.themingService.theme.getValue();
+    if (selectedTheme) {
+      window.localStorage.setItem('selectedTheme', selectedTheme);
+    }
+  }
 
   ngOnInit(): void {
+    const storedTheme = window.localStorage.getItem('selectedTheme');
+    if (storedTheme) {
+      this.themingService.theme.next(storedTheme);
+    }
+
     this.themingSubscription = this.themingService.theme.subscribe((theme: string) => {
       this.cssClass = theme;
       this.applyThemeOnOverlays();
