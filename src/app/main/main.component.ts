@@ -1,5 +1,7 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DataStore } from '../store/data.store';
+import { DataService } from '../services/data.service';
+
 
 
 @Pipe({
@@ -28,11 +30,32 @@ export class SearchFilterPipe implements PipeTransform {
 })
 export class MainComponent implements OnInit {
   term = '';
+  sports = [];
+  initSports = [];
+  categories = ['EventSport', 'TeamvsTeam'];
 
-  constructor(public store: DataStore) { }
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
-    this.store.load();
+    this.load();
+  }
+
+
+  load(): void {
+    this.data.getAllSports().subscribe(
+      res => {
+        this.initSports = res.sports;
+        this.sports = res.sports;
+      }
+    );
+  }
+
+  applyCategory(event) {
+    const category = event.value;
+    this.sports = this.initSports;
+    if (category) {
+      this.sports = this.sports.filter(sport => sport.strFormat === category);
+    }
   }
 
 }
